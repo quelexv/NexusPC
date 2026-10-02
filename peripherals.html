@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Периферия — NEXUS PC</title>
+    <meta content="web_standard" name="shell-type" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/catalog-page.js" defer></script>
+      <script type="module" src="js/firebase-client.js"></script>
+  </head>
+  <body class="site-body" data-catalog="peripheral">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="site-main"><div class="page-content"><p class="catalog-loading">Загружаем товары…</p><noscript><p class="catalog-loading">Для просмотра каталога включите JavaScript.</p></noscript></div></main>
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

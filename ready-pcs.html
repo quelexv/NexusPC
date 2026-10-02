@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Готовые игровые ПК — NEXUS PC</title>
+    <meta
+      name="description"
+      content="Готовые компьютеры NEXUS PC. Подберите сборку по цене, процессору, видеокарте и памяти."
+    />
+    <meta content="web_standard" name="shell-type" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/ready-pcs.js" defer></script>
+      <script type="module" src="js/firebase-client.js"></script>
+  </head>
+  <body class="site-body">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="site-main">
+      <div class="page-content">
+        <div class="catalog ready-catalog">
+          <div class="catalog__glow" aria-hidden="true"></div>
+          <div class="catalog__glow-secondary" aria-hidden="true"></div>
+          <section class="catalog-heading">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+              <a class="breadcrumbs__home" href="index.html"
+                ><span
+                  class="material-symbols-outlined icon-small"
+                  aria-hidden="true"
+                  >home</span
+                >Главная</a
+              >
+              <span aria-hidden="true">/</span>
+              <a class="breadcrumbs__link" href="catalog.html">Каталог</a>
+              <span aria-hidden="true">/</span>
+              <span class="breadcrumbs__current" aria-current="page"
+                >Готовые ПК</span
+              >
+            </nav>
+            <div class="catalog-heading__row">
+              <div class="catalog-heading__text">
+                <div class="catalog-heading__title-row">
+                  <h1 class="catalog-heading__title">Готовые игровые ПК</h1>
+                  <span class="catalog-heading__count"></span>
+                </div>
+                <p class="catalog-heading__description">
+                  Проверенные сборки для игр, стриминга и работы. Подберите
+                  компьютер под свои задачи и бюджет.
+                </p>
+              </div>
+              <div class="stock-status">
+                <span class="stock-status__dot" aria-hidden="true"></span
+                ><span class="stock-status__text"
+                  >СКЛАД: 3 СБОРКИ В НАЛИЧИИ</span
+                >
+              </div>
+            </div>
+            <div class="active-filters" id="pc-active-filters" hidden>
+              <span class="active-filters__label">АКТИВНЫЕ ФИЛЬТРЫ:</span>
+              <div
+                class="pc-filter-tags"
+                id="pc-filter-tags"
+                aria-label="Выбранные фильтры"
+              ></div>
+              <button
+                class="active-filters__clear"
+                type="button"
+                data-reset-filters
+              >
+                Очистить все
+              </button>
+            </div>
+          </section>
+
+          <div class="catalog__layout">
+            <aside class="filters" aria-labelledby="pc-filters-title">
+              <div class="filters__header">
+                <div class="filters__heading">
+                  <span
+                    class="material-symbols-outlined icon-accent"
+                    aria-hidden="true"
+                    >tune</span
+                  >
+                  <h2 class="filters__title" id="pc-filters-title">Фильтры</h2>
+                </div>
+                <button class="filters__reset" type="button" data-reset-filters>
+                  Сбросить
+                </button>
+              </div>
+              <button
+                class="filters__reset pc-filters-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="pc-filters-form"
+              >
+                Показать фильтры
+              </button>
+              <form class="pc-filter-form" id="pc-filters-form">
+                <div class="filters__categories">
+                  <span class="filters__label">Категория</span>
+                  <div class="category-list">
+                    <a
+                      class="category-link--active"
+                      href="ready-pcs.html"
+                      aria-current="page"
+                      ><span>Готовые ПК</span
+                      ><span class="category-count--active">4</span></a
+                    >
+                    <a class="category-link" href="catalog.html"
+                      ><span>Комплектующие</span
+                      ><span
+                        class="material-symbols-outlined icon-small"
+                        aria-hidden="true"
+                        >chevron_right</span
+                      ></a
+                    >
+                    <a class="category-link" href="peripherals.html"
+                      ><span>Периферия</span
+                      ><span
+                        class="material-symbols-outlined icon-small"
+                        aria-hidden="true"
+                        >chevron_right</span
+                      ></a
+                    >
+                  </div>
+                </div>
+                <div class="filters__divider"></div>
+                <fieldset class="filters__group">
+                  <legend class="filters__label">Цена, ₸</legend>
+                  <div class="price-inputs">
+                    <label class="price-field"
+                      ><span class="price-field__label">от</span
+                      ><input
+                        class="price-field__input"
+                        name="minPrice"
+                        id="pc-min-price"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="0"
+                        aria-label="Цена от, тенге"
+                        aria-describedby="pc-price-error"
+                    /></label>
+                    <label class="price-field"
+                      ><span class="price-field__label">до</span
+                      ><input
+                        class="price-field__input"
+                        name="maxPrice"
+                        id="pc-max-price"
+                        type="number"
+                        min="0"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder=""
+                        aria-label="Цена до, тенге"
+                        aria-describedby="pc-price-error"
+                    /></label>
+                  </div>
+                  <input
+                    class="pc-price-slider"
+                    id="pc-price-slider"
+                    type="range"
+                    min="0"
+                    max="10000"
+                    step="10000"
+                    value="10000"
+                    aria-label="Максимальная цена, тенге"
+                  />
+                  <p
+                    class="pc-filter-error"
+                    id="pc-price-error"
+                    role="alert"
+                    hidden
+                  ></p>
+                </fieldset>
+                <div class="filters__divider"></div>
+                <fieldset class="filters__group">
+                  <legend class="filters__label">Процессор</legend>
+                  <div class="brand-list" data-filter="cpu"></div>
+                </fieldset>
+                <div class="filters__divider"></div>
+                <fieldset class="filters__group">
+                  <legend class="filters__label">Видеокарта</legend>
+                  <div class="brand-list" data-filter="gpu"></div>
+                </fieldset>
+                <div class="filters__divider"></div>
+                <fieldset class="filters__group">
+                  <legend class="filters__label">Оперативная память</legend>
+                  <div class="memory-options" data-filter="ram"></div>
+                </fieldset>
+              </form>
+            </aside>
+
+            <section class="catalog__results" aria-label="Готовые компьютеры">
+              <label class="pc-search" for="pc-search"
+                ><span class="material-symbols-outlined" aria-hidden="true"
+                  >search</span
+                ><input
+                  class="price-field__input"
+                  id="pc-search"
+                  type="search"
+                  name="query"
+                  form="pc-filters-form"
+                  placeholder="Поиск по названию или характеристикам"
+                  aria-label="Поиск компьютеров"
+                  autocomplete="off"
+              /></label>
+              <div class="catalog-toolbar">
+                <div class="catalog-toolbar__filters">
+                  <p
+                    class="catalog-toolbar__count"
+                    id="pc-results-count"
+                    role="status"
+                    aria-live="polite"
+                    aria-atomic="true"
+                  >
+                    Загружаем компьютеры…
+                  </p>
+                  <div class="catalog-toolbar__divider"></div>
+                  <label class="quick-filter"
+                    ><input
+                      class="pc-switch-input"
+                      type="checkbox"
+                      name="inStock"
+                      form="pc-filters-form"
+                    /><span class="quick-filter__track" aria-hidden="true"
+                      ><span class="quick-filter__thumb"></span></span
+                    ><span class="quick-filter__text"
+                      >Только в наличии</span
+                    ></label
+                  >
+                  <label class="quick-filter"
+                    ><input
+                      class="pc-switch-input"
+                      type="checkbox"
+                      name="favorites"
+                      form="pc-filters-form"
+                    /><span class="quick-filter__track" aria-hidden="true"
+                      ><span class="quick-filter__thumb"></span></span
+                    ><span class="quick-filter__text">Избранное</span></label
+                  >
+                </div>
+                <div class="catalog-toolbar__sorting">
+                  <label class="sort-control" for="pc-sort"
+                    ><span class="sort-control__label">Сортировка:</span
+                    ><span class="sort-control__field"
+                      ><select
+                        class="sort-control__select"
+                        id="pc-sort"
+                        name="sort"
+                        form="pc-filters-form"
+                      >
+                        <option value="popular">Сначала популярные</option>
+                        <option value="price-asc">Сначала дешевле</option>
+                        <option value="price-desc">Сначала дороже</option>
+                        <option value="name">По названию</option></select
+                      ><span
+                        class="material-symbols-outlined sort-control__icon"
+                        aria-hidden="true"
+                        >expand_more</span
+                      ></span
+                    ></label
+                  >
+                  <div
+                    class="view-switch"
+                    role="group"
+                    aria-label="Вид каталога"
+                  >
+                    <button
+                      class="view-switch__button--active"
+                      type="button"
+                      data-pc-view="grid"
+                      aria-label="Плитка"
+                      aria-pressed="true"
+                    >
+                      <span
+                        class="material-symbols-outlined icon-button"
+                        aria-hidden="true"
+                        >grid_view</span
+                      >
+                    </button>
+                    <button
+                      class="view-switch__button"
+                      type="button"
+                      data-pc-view="list"
+                      aria-label="Список"
+                      aria-pressed="false"
+                    >
+                      <span
+                        class="material-symbols-outlined icon-button"
+                        aria-hidden="true"
+                        >table_rows</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="product-grid" id="pc-grid"></div>
+              <div class="pc-empty" id="pc-empty" hidden>
+                <span class="material-symbols-outlined" aria-hidden="true"
+                  >search_off</span
+                >
+                <h2>Ничего не найдено</h2>
+                <p>Измените запрос или уберите часть фильтров.</p>
+                <button
+                  class="product-card__buy"
+                  type="button"
+                  data-reset-filters
+                >
+                  Сбросить фильтры
+                </button>
+              </div>
+              <noscript
+                ><p class="pc-empty">
+                  Для поиска, фильтрации и работы с корзиной включите JavaScript
+                  в браузере.
+                </p></noscript
+              >
+              <div class="catalog-pagination">
+                <span class="category-count"
+                  >Гарантия 3 года · Сборка и стресс-тестирование</span
+                >
+                <nav class="pagination" id="pc-page-nav" aria-label="Страницы каталога"></nav>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

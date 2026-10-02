@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Избранное — NEXUS PC</title>
+    <meta
+      name="description"
+      content="Сохранённые товары NEXUS PC. Выбирайте любимые сборки и комплектующие и добавляйте их в корзину."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/shop-pages.js" defer></script>
+    <script type="module" src="js/firebase-client.js"></script>
+  </head>
+  <body class="site-body" data-shop-page="favorites">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="site-main">
+      <div class="page-content">
+        <div class="catalog shop-page">
+          <div class="catalog__glow" aria-hidden="true"></div>
+          <div class="catalog__glow-secondary" aria-hidden="true"></div>
+          <section class="catalog-heading">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+              <a class="breadcrumbs__home" href="index.html"
+                ><span
+                  class="material-symbols-outlined icon-small"
+                  aria-hidden="true"
+                  >home</span
+                >Главная</a
+              >
+              <span aria-hidden="true">/</span>
+              <span class="breadcrumbs__current" aria-current="page"
+                >Избранное</span
+              >
+            </nav>
+            <div class="catalog-heading__row">
+              <div class="catalog-heading__text">
+                <div class="catalog-heading__title-row">
+                  <h1 class="catalog-heading__title">Избранное</h1>
+                  <span
+                    class="catalog-heading__count"
+                    id="shop-page-count"
+                    aria-live="polite"
+                  ></span>
+                </div>
+                <p class="catalog-heading__description">
+                  Сохранённые сборки, комплектующие и периферия — всё, что понравилось, в
+                  одном месте.
+                </p>
+              </div>
+              <a class="shop-secondary-button" href="ready-pcs.html"
+                ><span
+                  class="material-symbols-outlined icon-button"
+                  aria-hidden="true"
+                  >arrow_back</span
+                >Продолжить выбор</a
+              >
+            </div>
+          </section>
+          <section class="shop-page__content" aria-label="Избранные товары">
+            <div
+              class="catalog-toolbar shop-page__toolbar"
+              id="favorites-toolbar"
+              hidden
+            >
+              <button
+                class="shop-text-button"
+                type="button"
+                data-shop-action="clear-favorites"
+              >
+                Очистить избранное
+              </button>
+              <label class="catalog-toolbar__sorting"
+                >Сортировка:
+                <select class="sort-control__select" id="favorites-sort">
+                  <option value="saved">По добавлению</option>
+                  <option value="price-asc">Сначала дешевле</option>
+                  <option value="price-desc">Сначала дороже</option>
+                  <option value="name">По названию</option>
+                </select>
+              </label>
+            </div>
+            <div class="favorites-filters" id="favorites-filters" hidden>
+              <label class="pc-search" for="favorites-search"><span class="material-symbols-outlined" aria-hidden="true">search</span><input class="price-field__input" id="favorites-search" type="search" placeholder="Поиск в избранном" autocomplete="off"></label>
+              <label class="sort-control" for="favorites-category"><span class="sort-control__label">Категория:</span><span class="sort-control__field"><select class="sort-control__select" id="favorites-category"><option value="all">Все товары</option><option value="pc">Готовые ПК</option><option value="component">Комплектующие</option><option value="peripheral">Периферия</option></select><span class="material-symbols-outlined sort-control__icon" aria-hidden="true">expand_more</span></span></label>
+              <button class="filters__reset" id="favorites-reset" type="button">Сбросить фильтры</button>
+            </div>
+            <div class="product-grid favorites-grid" id="favorites-grid"></div>
+            <div class="pc-empty" id="favorites-no-results" hidden><span class="material-symbols-outlined" aria-hidden="true">search_off</span><h2>Ничего не найдено</h2><p>Измените запрос или категорию.</p><button class="product-card__buy" type="button" id="favorites-no-results-reset">Сбросить фильтры</button></div>
+            <div
+              class="shop-empty shop-page__empty"
+              id="shop-page-empty"
+              hidden
+            >
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >favorite</span
+              >
+              <h2>Здесь будут избранные товары</h2>
+              <p>
+                Нажмите на сердечко в карточке товара на главной странице или в
+                каталоге.
+              </p>
+              <div class="shop-empty__actions">
+                <a class="pc-primary-button" href="ready-pcs.html">Готовые ПК</a
+                ><a class="shop-secondary-button" href="catalog.html"
+                  >Комплектующие</a
+                ><a class="shop-secondary-button" href="peripherals.html">Периферия</a>
+              </div>
+            </div>
+            <noscript
+              ><p class="shop-empty">
+                Включите JavaScript, чтобы увидеть сохранённые товары.
+              </p></noscript
+            >
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

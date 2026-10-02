@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Подробные характеристики и отзывы о товарах NEXUS PC." />
+    <title>Товар — NEXUS PC</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script type="module" src="js/product-page.js" onerror="document.getElementById('product-status').textContent='Не удалось загрузить страницу товара. Проверьте интернет и обновите страницу.'"></script>
+  </head>
+  <body class="site-body product-page-body">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="site-main">
+      <div class="page-content"><div class="catalog product-detail-page">
+        <div class="catalog__glow" aria-hidden="true"></div><div class="catalog__glow-secondary" aria-hidden="true"></div>
+        <nav class="breadcrumbs product-detail__breadcrumbs" aria-label="Хлебные крошки"><a class="breadcrumbs__home" href="index.html"><span class="material-symbols-outlined icon-small" aria-hidden="true">home</span>Главная</a><span aria-hidden="true">/</span><a id="product-category-link" href="catalog.html">Каталог</a><span aria-hidden="true">/</span><span class="breadcrumbs__current" id="product-breadcrumb" aria-current="page">Товар</span></nav>
+        <p class="product-detail__status" id="product-status" role="status" aria-live="polite">Загружаем товар…</p>
+        <section class="pc-empty" id="product-not-found" hidden><span class="material-symbols-outlined" aria-hidden="true">search_off</span><h1>Товар не найден</h1><p>Проверьте ссылку или вернитесь в каталог.</p><a class="product-card__buy" href="catalog.html">В каталог</a></section>
+        <div id="product-content" hidden>
+          <section class="product-detail__hero" aria-labelledby="product-title">
+            <div class="product-detail__media">
+              <div class="product-detail__visual"><div class="product-detail__visual-inner"><img id="product-image" alt="" /><span id="product-image-caption">NEXUS PC</span></div></div>
+              <div class="product-detail__media-info">
+                <a class="product-detail__rating" href="#product-reviews" id="product-rating-link"><span class="product-detail__stars" id="product-rating-stars" aria-hidden="true">☆☆☆☆☆</span><span id="product-rating-text">Пока без оценок</span></a>
+                <div class="product-detail__highlights" id="product-highlights"></div>
+              </div>
+            </div>
+            <div class="product-detail__summary">
+              <span class="product-detail__eyebrow" id="product-category">ТОВАР</span>
+              <h1 id="product-title"></h1>
+              <div class="product-detail__purchase">
+                <span class="product-detail__stock" id="product-stock"></span>
+                <strong class="product-detail__price" id="product-price"></strong>
+                <div class="product-detail__actions">
+                  <button class="product-card__buy" type="button" id="product-add" data-shop-action="add"><span class="material-symbols-outlined icon-button" aria-hidden="true">shopping_cart</span>В корзину</button>
+                  <button class="product-detail__favorite" type="button" id="product-favorite" data-shop-action="favorite" aria-pressed="false"><span class="material-symbols-outlined icon-button" aria-hidden="true">favorite</span>В избранное</button>
+                </div>
+                <p class="product-detail__note">Оплата и условия доставки согласуются после оформления заказа.</p>
+              </div>
+              <p class="product-detail__description" id="product-description"></p>
+            </div>
+          </section>
+          <section class="product-detail__section" aria-labelledby="product-specs-title"><div class="product-detail__section-heading"><span class="product-detail__section-index">01 / ХАРАКТЕРИСТИКИ</span><h2 id="product-specs-title">Все параметры</h2></div><dl class="product-detail__spec-list" id="product-specs"></dl></section>
+          <section class="product-detail__section" id="product-reviews" aria-labelledby="product-reviews-title"><div class="product-detail__section-heading"><span class="product-detail__section-index">02 / ОТЗЫВЫ</span><h2 id="product-reviews-title">Отзывы пользователей</h2><p>Оценки и средний балл учитывают только опубликованные отзывы пользователей.</p></div><div class="product-detail__review-summary"><strong id="product-review-average">—</strong><div><span class="product-detail__stars" id="product-review-stars" aria-hidden="true">☆☆☆☆☆</span><p id="product-review-count">Настоящих отзывов пока нет</p></div></div><p class="product-detail__review-message" id="product-review-message" role="status" aria-live="polite">Загружаем отзывы…</p><div class="product-detail__review-list" id="product-review-list"></div><div class="product-detail__review-editor" id="product-review-editor" hidden><h3 id="product-review-form-title" tabindex="-1">Оставить отзыв</h3><p>Один отзыв на товар. Его можно изменить или удалить позже. Имя из профиля будет видно другим посетителям.</p><form id="product-review-form">
+              <fieldset class="product-detail__rating-field">
+                <legend>Ваша оценка</legend>
+                <div class="product-detail__star-picker">
+                  <input id="product-star-5" type="radio" name="rating" value="5" required aria-label="5 звёзд" /><label for="product-star-5" title="5 звёзд"><span aria-hidden="true">★</span></label>
+                  <input id="product-star-4" type="radio" name="rating" value="4" aria-label="4 звезды" /><label for="product-star-4" title="4 звезды"><span aria-hidden="true">★</span></label>
+                  <input id="product-star-3" type="radio" name="rating" value="3" aria-label="3 звезды" /><label for="product-star-3" title="3 звезды"><span aria-hidden="true">★</span></label>
+                  <input id="product-star-2" type="radio" name="rating" value="2" aria-label="2 звезды" /><label for="product-star-2" title="2 звезды"><span aria-hidden="true">★</span></label>
+                  <input id="product-star-1" type="radio" name="rating" value="1" aria-label="1 звезда" /><label for="product-star-1" title="1 звезда"><span aria-hidden="true">★</span></label>
+                </div>
+                <span id="product-rating-choice" aria-live="polite">Выберите от 1 до 5 звёзд</span>
+              </fieldset>
+              <label>Отзыв<textarea name="text" rows="5" minlength="10" maxlength="1000" required placeholder="Расскажите, что понравилось и что можно улучшить"></textarea></label><div class="product-detail__review-form-actions"><button class="product-card__buy" type="submit" id="product-review-submit">Опубликовать отзыв</button><button class="account-text-button" type="button" id="product-review-cancel" hidden>Отмена</button><button class="account-text-button" type="button" id="product-review-delete" hidden>Удалить мой отзыв</button></div></form></div><p class="product-detail__review-login" id="product-review-login" hidden>Чтобы написать отзыв, <a id="product-review-login-link" href="account.html">войдите в аккаунт</a>.</p></section>
+          <section class="product-detail__section" id="product-related-section" aria-labelledby="product-related-title" hidden><div class="product-detail__section-heading"><span class="product-detail__section-index">03 / ЕЩЁ В КАТАЛОГЕ</span><h2 id="product-related-title">Похожие товары</h2></div><div class="product-grid product-detail__related-grid" id="product-related"></div></section>
+        </div>
+        <noscript><p class="pc-empty">Для просмотра товара включите JavaScript.</p></noscript>
+      </div></div>
+    </main>
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

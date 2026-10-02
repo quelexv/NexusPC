@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NEXUS PC — Главная страница</title>
+    <meta content="web_standard" name="shell-type" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/home-products.js" defer></script>
+      <script type="module" src="js/firebase-client.js"></script>
+  </head>
+  <body class="site-body">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="site-main">
+      <div class="page-content">
+        <section class="hero" hidden>
+          <div class="hero__glow"></div>
+          <div class="hero__glow-secondary"></div>
+          <div class="hero__container">
+            <div class="hero__grid">
+              <div class="hero__content">
+                <div class="hero__intro">
+                  <h1 class="hero__title"></h1>
+                  <p class="hero__description"></p>
+                </div>
+                <div class="hero-specs">
+                  <div class="hero__row">
+                    <span class="hero-specs__label">GPU</span>
+                    <span class="hero-specs__value"></span>
+                  </div>
+                  <div class="hero__row">
+                    <span class="hero-specs__label">CPU</span>
+                    <span class="hero-specs__value"></span>
+                  </div>
+                  <div class="hero__row">
+                    <span class="hero-specs__label">RAM</span>
+                    <span class="hero-specs__value"></span>
+                  </div>
+                  <div class="hero__row">
+                    <span class="hero-specs__label">SSD</span>
+                    <span class="hero-specs__cooling"></span>
+                  </div>
+                </div>
+                <div class="hero__purchase">
+                  <div class="hero__prices">
+                    <span class="hero__price"></span>
+                  </div>
+                  <div class="hero__buttons">
+                    <a
+                      class="hero__primary-button"
+                      data-path="konfigurator" href="configurator.html"
+                    >
+                      <span class="material-symbols-outlined icon-button"
+                        >memory</span
+                      >
+                      Собрать свой ПК
+                    </a>
+                    <button
+                      class="hero__secondary-button hero__buy-button"
+                      type="button"
+                      data-shop-action="buy"
+                    >
+                      <span class="material-symbols-outlined icon-button" aria-hidden="true">shopping_cart</span>
+                      Купить
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="hero__visual">
+                <div class="hero__frame">
+                  <div class="hero__picture">
+                    <img
+                      class="hero__image"
+                      alt=""
+                      width="1402"
+                      height="1122"
+                      fetchpriority="high"
+                    />
+                    <div class="hero__shade"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="services">
+              <div class="service-card">
+                <div class="service-card__icon">
+                  <span class="material-symbols-outlined icon-service"
+                    >verified_user</span
+                  >
+                </div>
+                <div class="hero__column">
+                  <span class="service-card__title">
+                    Официальная гарантия 3 года
+                  </span>
+                  <span class="service-card__description">
+                    Выезд инженера и замена за 24ч
+                  </span>
+                </div>
+              </div>
+              <div class="service-card">
+                <div class="service-card__icon">
+                  <span class="material-symbols-outlined icon-service"
+                    >local_shipping</span
+                  >
+                </div>
+                <div class="hero__column">
+                  <span class="service-card__title">
+                    Бесплатная экспресс-доставка
+                  </span>
+                  <span class="service-card__description">
+                    Бронированный сейф-бокс по Казахстану
+                  </span>
+                </div>
+              </div>
+              <div class="service-card">
+                <div class="service-card__icon">
+                  <span class="material-symbols-outlined icon-service"
+                    >timelapse</span
+                  >
+                </div>
+                <div class="hero__column">
+                  <span class="service-card__title">
+                    Сборка и стресс-тест 24ч
+                  </span>
+                  <span class="service-card__description">
+                    OCCT, FurMark, MemTest86
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="rigs" hidden>
+          <div class="container">
+            <div class="rigs__header">
+              <div>
+                <span class="rigs__eyebrow"> READY TO SHIP </span>
+                <h2 class="section-title">Флагманские готовые сборки</h2>
+              </div>
+            </div>
+            <div class="rigs__grid"></div>
+          </div>
+        </section>
+
+        <section class="configurator">
+          <div class="configurator__panel">
+            <div class="configurator__decoration">
+              <svg
+                class="configurator__circuit"
+                height="100%"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <pattern
+                  height="80"
+                  id="circuit-pattern"
+                  patternUnits="userSpaceOnUse"
+                  width="80"
+                >
+                  <path
+                    class="configurator__circuit-line"
+                    d="M 10 10 L 70 10 M 70 10 L 70 70 M 30 50 L 50 50 L 50 30"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  ></path>
+                  <circle
+                    class="configurator__circuit-line"
+                    cx="10"
+                    cy="10"
+                    fill="currentColor"
+                    r="3"
+                  ></circle>
+                  <circle
+                    class="configurator__circuit-line"
+                    cx="70"
+                    cy="70"
+                    fill="currentColor"
+                    r="3"
+                  ></circle>
+                </pattern>
+                <rect
+                  fill="url(#circuit-pattern)"
+                  height="100%"
+                  width="100%"
+                ></rect>
+              </svg>
+            </div>
+            <div class="configurator__grid">
+              <div class="configurator__content">
+                <h2 class="configurator__title">
+                  Нужна индивидуальная сборка под ваш бюджет?
+                </h2>
+                <p class="configurator__description">
+                  Опишите задачи и бюджет, выберите разрешение и приоритет.
+                  Конфигуратор предложит готовый ПК или пример сборки с ценами
+                  комплектующих из каталога.
+                </p>
+                <div class="configurator__actions">
+                  <a
+                    class="configurator__button"
+                    data-path="konfigurator" href="configurator.html"
+                  >
+                    <span class="material-symbols-outlined icon-large"
+                      >view_in_ar</span
+                    >
+                    Открыть онлайн-конфигуратор ПК
+                  </a>
+                  <a
+                    class="configurator__consultation"
+                    href="tel:+77273553590"
+                  >
+                    <span class="material-symbols-outlined icon-large-light"
+                      >call</span
+                    >
+                    Позвонить консультанту
+                  </a>
+                </div>
+              </div>
+              <div class="compatibility">
+                <div class="compatibility__panel">
+                  <div class="compatibility__header">
+                    <span>ПОДБОР ПО ПАРАМЕТРАМ</span>
+                    <span class="compatibility__status">ONLINE</span>
+                  </div>
+                  <div class="compatibility__list">
+                    <div class="compatibility__item">
+                      <span class="material-symbols-outlined icon-accent">
+                        check_circle
+                      </span>
+                      <span>Подбор по задачам и разрешению</span>
+                    </div>
+                    <div class="compatibility__item">
+                      <span class="material-symbols-outlined icon-accent">
+                        check_circle
+                      </span>
+                      <span>Сборка в пределах указанного бюджета</span>
+                    </div>
+                    <div class="compatibility__item">
+                      <span class="material-symbols-outlined icon-accent">
+                        check_circle
+                      </span>
+                      <span>Готовая модель или набор комплектующих</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="reviews">
+          <div class="reviews__header">
+            <h2 class="section-title">Примеры сетапов</h2>
+            <span class="reviews__count">Иллюстрации возможных сборок NEXUS PC</span>
+          </div>
+          <div class="reviews__grid">
+            <article class="review-card">
+              <div>
+                <div class="review-card__picture">
+                  <img class="review-card__image" alt="Пример рабочего места для 3D и рендера" src="images/setups/render-workstation.webp" loading="lazy" />
+                  <div class="review-card__configuration">NEXUS BEAST CUSTOM</div>
+                </div>
+                <div class="review-card__content">
+                  <div class="review-card__header">
+                    <div class="reviews__summary">
+                      <div class="review-card__avatar">3D</div>
+                      <div>
+                        <h3 class="review-card__name">3D и рендер</h3>
+                        <span class="review-card__role">Сценарий использования</span>
+                      </div>
+                    </div>
+                    <span class="review-card__example">ПРИМЕР</span>
+                  </div>
+                  <p class="review-card__text">Компьютер с мощной видеокартой и большим объёмом памяти для работы с 3D-сценами, монтажа и рендера.</p>
+                </div>
+              </div>
+              <div class="review-card__footer"><span class="review-card__date">Иллюстрация возможного сетапа</span></div>
+            </article>
+            <article class="review-card">
+              <div>
+                <div class="review-card__picture">
+                  <img class="review-card__image" alt="Пример рабочего места для стриминга" src="images/setups/streaming-workstation.webp" loading="lazy" />
+                  <div class="review-card__configuration">NEXUS STREAMER PRO</div>
+                </div>
+                <div class="review-card__content">
+                  <div class="review-card__header">
+                    <div class="reviews__summary">
+                      <div class="review-card__avatar">ST</div>
+                      <div>
+                        <h3 class="review-card__name">Стриминг и игры</h3>
+                        <span class="review-card__role">Сценарий использования</span>
+                      </div>
+                    </div>
+                    <span class="review-card__example">ПРИМЕР</span>
+                  </div>
+                  <p class="review-card__text">Сборка для одновременной игры, трансляции и работы с несколькими экранами. Конфигурацию можно подобрать под бюджет.</p>
+                </div>
+              </div>
+              <div class="review-card__footer"><span class="review-card__date">Иллюстрация возможного сетапа</span></div>
+            </article>
+            <article class="review-card">
+              <div>
+                <div class="review-card__picture">
+                  <img class="review-card__image" alt="Пример рабочей станции для исследований" src="images/setups/research-workstation.webp" loading="lazy" />
+                  <div class="review-card__configuration">NEXUS APEX TITAN</div>
+                </div>
+                <div class="review-card__content">
+                  <div class="review-card__header">
+                    <div class="reviews__summary">
+                      <div class="review-card__avatar">AI</div>
+                      <div>
+                        <h3 class="review-card__name">Рабочая станция</h3>
+                        <span class="review-card__role">Сценарий использования</span>
+                      </div>
+                    </div>
+                    <span class="review-card__example">ПРИМЕР</span>
+                  </div>
+                  <p class="review-card__text">Компьютер для ресурсоёмких задач: обработки данных, локальных моделей и профессиональных приложений.</p>
+                </div>
+              </div>
+              <div class="review-card__footer"><span class="review-card__date">Иллюстрация возможного сетапа</span></div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

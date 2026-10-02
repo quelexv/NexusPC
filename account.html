@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Личный кабинет NEXUS PC: вход, профиль и история заказов." />
+    <title>Личный кабинет — NEXUS PC</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script type="module" src="js/account-page.js" onerror="document.getElementById('account-status').textContent='Не удалось загрузить Firebase. Проверьте интернет и обновите страницу.'"></script>
+    <script type="module" src="js/admin-panel.js"></script>
+  </head>
+  <body class="site-body" data-account-page="true">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="site-main"><div class="page-content"><div class="catalog account-page"><div class="catalog__glow" aria-hidden="true"></div><div class="catalog__glow-secondary" aria-hidden="true"></div><section class="catalog-heading"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a class="breadcrumbs__home" href="index.html"><span class="material-symbols-outlined icon-small" aria-hidden="true">home</span>Главная</a><span aria-hidden="true">/</span><span class="breadcrumbs__current" aria-current="page">Личный кабинет</span></nav><div class="catalog-heading__row"><div class="catalog-heading__text"><div class="catalog-heading__title-row"><h1 class="catalog-heading__title">Личный кабинет</h1><span class="catalog-heading__count">NEXUS ACCOUNT</span></div><p class="catalog-heading__description">Профиль, корзина, избранное и заказы в одном месте.</p></div></div></section>
+      <p class="account-status" id="account-status" role="status" aria-live="polite">Подключаем Firebase…</p>
+      <section class="account-auth" id="account-auth" aria-label="Вход в аккаунт" hidden><div class="account-auth__intro"><span class="material-symbols-outlined" aria-hidden="true">shield_person</span><h2>Войдите в NEXUS PC</h2><p>После входа ваши товары и заказы сохраняются в аккаунте.</p></div><div class="account-tabs" role="tablist" aria-label="Вход или регистрация"><button type="button" id="account-tab-login" class="account-tab is-active" role="tab" aria-selected="true" aria-controls="account-login-panel">Вход</button><button type="button" id="account-tab-register" class="account-tab" role="tab" aria-selected="false" aria-controls="account-register-panel">Регистрация</button></div>
+        <div id="account-login-panel" role="tabpanel" aria-labelledby="account-tab-login"><form id="account-login-form" class="account-form"><label>Email<input name="email" type="email" autocomplete="email" required placeholder="example@mail.com" /></label><label>Пароль<input name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="Ваш пароль" /></label><button class="product-card__buy" type="submit">Войти</button></form><button class="account-text-button" id="account-reset-password" type="button">Забыли пароль?</button></div>
+        <div id="account-register-panel" role="tabpanel" aria-labelledby="account-tab-register" hidden><form id="account-register-form" class="account-form"><label>Ваше имя<input name="name" type="text" autocomplete="name" required maxlength="100" placeholder="Как к вам обращаться" /></label><label>Email<input name="email" type="email" autocomplete="email" required placeholder="example@mail.com" /></label><label>Пароль<input name="password" type="password" autocomplete="new-password" required minlength="6" placeholder="Не менее 6 символов" /></label><button class="product-card__buy" type="submit">Создать аккаунт</button></form></div>
+        <button class="account-google" id="account-google" type="button" hidden><span class="material-symbols-outlined" aria-hidden="true">account_circle</span>Войти через Google</button><p class="account-error" id="account-auth-error" role="alert" hidden></p>
+      </section>
+      <section class="account-dashboard" id="account-dashboard" hidden><div class="account-dashboard__top"><div><h2 id="account-greeting">Ваш профиль</h2><p id="account-email"></p></div><button class="shop-secondary-button" id="account-signout" type="button">Выйти</button></div><div class="account-dashboard__grid"><section class="account-panel" aria-labelledby="account-profile-title"><h3 id="account-profile-title">Контактные данные</h3><form id="account-profile-form" class="account-form"><label>Имя<input name="name" type="text" autocomplete="name" maxlength="100" required /></label><label>Email<input name="email" type="email" autocomplete="email" readonly /></label><label>Телефон<input name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="+7 (___) ___-__-__" /></label><button class="product-card__buy" type="submit">Сохранить профиль</button></form></section><section class="account-panel" aria-labelledby="account-links-title"><h3 id="account-links-title">Ваши товары</h3><div class="account-links"><a href="favorites.html"><span class="material-symbols-outlined" aria-hidden="true">favorite</span>Избранное <strong id="account-favorites-count">0</strong></a><a href="cart.html"><span class="material-symbols-outlined" aria-hidden="true">shopping_bag</span>Корзина <strong id="account-cart-count">0</strong></a></div></section></div><section class="account-panel account-orders" aria-labelledby="account-orders-title"><h3 id="account-orders-title">История заказов</h3><p id="account-orders-empty" class="account-orders__empty" hidden>Заказов пока нет.</p><div id="account-orders-list" class="account-orders__list"></div></section></section>
+      <div class="admin-access" id="admin-access" hidden><button class="shop-secondary-button" id="admin-toggle" type="button" aria-expanded="false" aria-controls="admin-panel">Включить админку</button></div>
+      <section class="admin-panel" id="admin-panel" aria-label="Админ-панель" hidden>
+        <div class="admin-panel__heading"><span class="product-detail__eyebrow">NEXUS CONTROL</span><h2>Админ-панель</h2><p>Товары, отзывы и заказы магазина.</p></div>
+        <p class="admin-panel__message" id="admin-message" role="status" aria-live="polite"></p>
+        <div class="admin-panel__tabs" role="tablist" aria-label="Разделы админки">
+          <button class="admin-panel__tab is-active" type="button" data-admin-tab="products" aria-selected="true">Товары</button>
+          <button class="admin-panel__tab" type="button" data-admin-tab="reviews" aria-selected="false">Отзывы</button>
+          <button class="admin-panel__tab" type="button" data-admin-tab="orders" aria-selected="false">Заказы</button>
+        </div>
+        <section id="admin-products" class="admin-panel__section">
+          <h3>Добавить товар</h3>
+          <form id="admin-product-form" class="admin-product-form">
+            <div class="admin-product-form__grid">
+              <label>Раздел<select name="kind" required><option value="pc">Готовые ПК</option><option value="component">Комплектующие</option><option value="peripheral">Периферия</option></select></label>
+              <label>ID товара <small>(латиница, цифры, дефис)</small><input name="id" pattern="[a-z0-9-]{1,80}" maxlength="80" required placeholder="my-new-pc" /></label>
+              <label>Название<input name="name" maxlength="140" required /></label>
+              <label>Цена, ₸<input name="price" type="number" min="1" step="1" required /></label>
+              <label class="admin-product-form__wide">Ссылка на изображение <small>(https:// или путь images/...)</small><input name="image" maxlength="500" required placeholder="images/pcs/my-pc.jpg" /></label>
+              <label class="admin-product-form__wide">Описание<textarea name="description" maxlength="1000" rows="3" required></textarea></label>
+            </div>
+            <div id="admin-pc-fields" class="admin-product-form__grid">
+              <label>Процессор <small>(семейство)</small><input name="cpu" maxlength="100" placeholder="AMD Ryzen 7" /></label>
+              <label>Модель процессора<input name="cpuModel" maxlength="100" /></label>
+              <label>Видеокарта <small>(семейство)</small><input name="gpu" maxlength="100" placeholder="RTX 4070" /></label>
+              <label>Модель видеокарты<input name="gpuModel" maxlength="100" /></label>
+              <label>ОЗУ, ГБ<input name="ram" type="number" min="1" max="1024" step="1" /></label>
+              <label>Память <small>(подробно)</small><input name="memory" maxlength="100" placeholder="32GB DDR5" /></label>
+              <label>Накопитель<input name="storage" maxlength="100" placeholder="1TB NVMe" /></label>
+            </div>
+            <div id="admin-other-fields" class="admin-product-form__grid" hidden>
+              <label>Категория<input name="category" maxlength="80" placeholder="Видеокарты" /></label>
+              <label>Бренд<input name="brand" maxlength="80" placeholder="ASUS" /></label>
+              <label>Видеопамять, ГБ <small>(для видеокарт)</small><input name="memoryGb" type="number" min="1" max="512" step="1" placeholder="16" /></label>
+              <label class="admin-product-form__wide">Характеристики <small>(по одной в строке, максимум 12)</small><textarea name="specs" rows="4" placeholder="16GB GDDR6X&#10;RGB"></textarea></label>
+            </div>
+            <div class="admin-product-form__checks"><label><input name="inStock" type="checkbox" checked /> В наличии</label><label><input name="express" type="checkbox" /> Быстрая доставка</label><label id="admin-featured-label"><input name="featured" type="checkbox" /> Выделить в каталоге</label></div>
+            <div class="admin-product-form__actions"><button class="product-card__buy" type="submit">Сохранить товар</button><button class="shop-secondary-button" id="admin-product-reset" type="button">Очистить форму</button></div>
+            <p class="admin-panel__message" id="admin-product-message" role="status" aria-live="polite"></p>
+          </form>
+          <h3>Товары в Firebase</h3><div id="admin-product-list" class="admin-panel__list"></div>
+        </section>
+        <section id="admin-reviews" class="admin-panel__section" hidden><h3>Отзывы</h3><label class="admin-panel__filter">Товар<select id="admin-review-product"></select></label><div id="admin-review-list" class="admin-panel__list"></div></section>
+        <section id="admin-orders" class="admin-panel__section" hidden><div class="admin-panel__section-top"><h3>Все заказы</h3><button class="shop-secondary-button" id="admin-orders-refresh" type="button">Обновить</button></div><div id="admin-order-list" class="admin-panel__list"></div></section>
+      </section>
+      <noscript><p class="pc-empty">Для входа в личный кабинет включите JavaScript.</p></noscript>
+    </div></div></main>
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

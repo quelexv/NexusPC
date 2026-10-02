@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Корзина — NEXUS PC</title>
+    <meta
+      name="description"
+      content="Ваша корзина NEXUS PC. Изменяйте количество товаров, проверьте сумму и подготовьте заказ."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/shop-pages.js" defer></script>
+    <script type="module" src="js/firebase-client.js" onerror="window.NexusFirebaseLoadFailed=true"></script>
+  </head>
+  <body class="site-body" data-shop-page="cart">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="site-main">
+      <div class="page-content">
+        <div class="catalog shop-page">
+          <div class="catalog__glow" aria-hidden="true"></div>
+          <div class="catalog__glow-secondary" aria-hidden="true"></div>
+          <section class="catalog-heading">
+            <nav class="breadcrumbs" aria-label="Хлебные крошки">
+              <a class="breadcrumbs__home" href="index.html"
+                ><span
+                  class="material-symbols-outlined icon-small"
+                  aria-hidden="true"
+                  >home</span
+                >Главная</a
+              >
+              <span aria-hidden="true">/</span>
+              <span class="breadcrumbs__current" aria-current="page"
+                >Корзина</span
+              >
+            </nav>
+            <div class="catalog-heading__row">
+              <div class="catalog-heading__text">
+                <div class="catalog-heading__title-row">
+                  <h1 class="catalog-heading__title">Корзина</h1>
+                  <span
+                    class="catalog-heading__count"
+                    id="shop-page-count"
+                    aria-live="polite"
+                  ></span>
+                </div>
+                <p class="catalog-heading__description">
+                  Ваша будущая система начинается здесь. Проверьте товары и
+                  количество.
+                </p>
+              </div>
+              <a class="shop-secondary-button" href="ready-pcs.html"
+                ><span
+                  class="material-symbols-outlined icon-button"
+                  aria-hidden="true"
+                  >arrow_back</span
+                >Продолжить выбор</a
+              >
+            </div>
+          </section>
+          <div class="shop-page__content">
+            <section
+              class="shop-order-success"
+              id="order-success"
+              aria-labelledby="order-success-title"
+              hidden
+            >
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >check_circle</span
+              >
+              <div>
+                <h2 id="order-success-title" tabindex="-1">Заказ сохранён</h2>
+                <p id="order-success-details"></p>
+                <p>
+                  Для подтверждения заказа свяжитесь с магазином:
+                  <a href="tel:+77273553590">+7 (727) 355-35-90</a>. Данные
+                  сохранены в вашем аккаунте. Оплата на сайте не производится.
+                </p>
+              </div>
+              <button
+                class="shop-secondary-button"
+                type="button"
+                id="order-download"
+              >
+                Скачать заказ
+              </button>
+            </section>
+            <div class="cart-layout" id="cart-layout" hidden>
+              <section
+                class="cart-products"
+                aria-labelledby="cart-products-title"
+              >
+                <div class="catalog-toolbar shop-page__toolbar">
+                  <h2 class="cart-products__title" id="cart-products-title">
+                    Ваши товары
+                  </h2>
+                  <button
+                    class="shop-text-button"
+                    type="button"
+                    data-shop-action="clear-cart"
+                  >
+                    Очистить корзину
+                  </button>
+                </div>
+                <div class="cart-list" id="cart-list"></div>
+              </section>
+              <aside class="cart-summary" aria-labelledby="cart-summary-title">
+                <h2 id="cart-summary-title">Ваш заказ</h2>
+                <dl class="cart-summary__details">
+                  <div>
+                    <dt>Товары (<span id="cart-unit-count">0</span>)</dt>
+                    <dd id="cart-subtotal"></dd>
+                  </div>
+                  <div id="cart-assembly-row">
+                    <dt>Сборка и проверка ПК</dt>
+                    <dd class="cart-summary__included">Включены</dd>
+                  </div>
+                </dl>
+                <div class="shop-total cart-summary__total" aria-live="polite">
+                  <span>Итого</span><strong id="cart-total"></strong>
+                </div>
+                <p class="cart-summary__note" id="cart-stock-note" hidden>
+                  В корзине есть ПК под заказ. Срок сборки уточняется при
+                  подтверждении.
+                </p>
+                <button
+                  class="pc-primary-button cart-summary__checkout"
+                  type="button"
+                  id="checkout-open"
+                >
+                  Подготовить заказ<span
+                    class="material-symbols-outlined icon-button"
+                    aria-hidden="true"
+                    >arrow_forward</span
+                  >
+                </button>
+                <p class="cart-summary__note">
+                  Сохраните данные заказа и свяжитесь с магазином для
+                  подтверждения. Доставка согласуется отдельно.
+                </p>
+                <a class="cart-summary__favorites" href="favorites.html"
+                  ><span
+                    class="material-symbols-outlined icon-small"
+                    aria-hidden="true"
+                    >favorite</span
+                  >Добавить из избранного</a
+                >
+              </aside>
+            </div>
+            <div
+              class="shop-empty shop-page__empty"
+              id="shop-page-empty"
+              hidden
+            >
+              <span class="material-symbols-outlined" aria-hidden="true"
+                >shopping_bag</span
+              >
+              <h2>Корзина пока пуста</h2>
+              <p>
+                Выберите готовый ПК или комплектующие в каталоге, либо добавьте
+                сохранённые товары из избранного.
+              </p>
+              <div class="shop-empty__actions">
+                <a class="pc-primary-button" href="ready-pcs.html">Готовые ПК</a
+                ><a class="shop-secondary-button" href="catalog.html"
+                  >Комплектующие</a
+                ><a class="shop-secondary-button" href="favorites.html"
+                  >Избранное</a
+                >
+              </div>
+            </div>
+            <noscript
+              ><p class="shop-empty">
+                Включите JavaScript, чтобы управлять корзиной.
+              </p></noscript
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+    <dialog
+      class="shop-dialog checkout-dialog"
+      id="checkout-dialog"
+      aria-labelledby="checkout-title"
+      aria-describedby="checkout-description"
+    >
+      <div class="shop-dialog__heading">
+        <h2 id="checkout-title">Данные заказа</h2>
+        <button
+          class="shop-icon-button"
+          type="button"
+          id="checkout-close"
+          aria-label="Закрыть окно"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true"
+            >close</span
+          >
+        </button>
+      </div>
+      <p class="cart-summary__note" id="checkout-description">
+        Заказ будет сохранён в вашем аккаунте Firebase. Для подтверждения
+        свяжитесь с магазином. Оплата на сайте не производится.
+      </p>
+      <form class="checkout-form" id="checkout-form">
+        <label
+          >Ваше имя<input
+            name="customer"
+            type="text"
+            autocomplete="name"
+            required
+            maxlength="100"
+            placeholder="Имя и фамилия"
+        /></label>
+        <label
+          >Телефон<input
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            inputmode="tel"
+            required
+            maxlength="24"
+            pattern="[+0-9() .\-]{10,24}"
+            title="Введите телефон: от 10 до 15 цифр, можно использовать +, пробелы, скобки и дефисы"
+            placeholder="+7 (___) ___-__-__"
+        /></label>
+        <label class="checkout-form__wide"
+          >Email (необязательно)<input
+            name="email"
+            type="email"
+            autocomplete="email"
+            maxlength="160"
+            placeholder="example@mail.com"
+        /></label>
+        <label class="checkout-form__wide"
+          >Получение<select name="delivery">
+            <option value="pickup">Самовывоз</option>
+            <option value="delivery">Доставка</option>
+          </select></label
+        >
+        <label class="checkout-form__wide" id="checkout-address-label" hidden
+          >Адрес доставки<input
+            name="address"
+            autocomplete="street-address"
+            maxlength="300"
+            placeholder="Город, улица, дом, квартира"
+        /></label>
+        <label class="checkout-form__wide"
+          >Комментарий (необязательно)<textarea
+            name="comment"
+            rows="3"
+            maxlength="1000"
+            placeholder="Пожелания к сборке или получению"
+          ></textarea>
+        </label>
+        <p
+          class="checkout-form__error checkout-form__wide"
+          id="checkout-error"
+          role="alert"
+          hidden
+        ></p>
+        <div class="shop-total checkout-form__wide">
+          <span>Сумма товаров</span><strong id="checkout-total"></strong>
+        </div>
+        <button class="pc-primary-button checkout-form__wide" type="submit">
+          Сохранить заказ в аккаунте
+        </button>
+      </form>
+    </dialog>
+
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

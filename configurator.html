@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="images/nexus.logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Подберите готовый ПК или комплектующие для своей сборки по задачам и бюджету." />
+    <title>Конфигуратор ПК — NEXUS PC</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/site-shell.js" defer></script>
+    <script src="js/product-catalog.js" defer></script>
+    <script src="js/shop.js" defer></script>
+    <script src="js/configurator.js" defer></script>
+      <script type="module" src="js/firebase-client.js"></script>
+  </head>
+  <body class="site-body">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <div class="logo-wrap">
+          <a class="logo" data-path="glavnaya" href="index.html">
+            <img
+              alt="Логотип NEXUS PC"
+              class="logo__image"
+              src="images/nexus.logo.png"
+            />
+            <span class="logo__text">
+              NEXUS
+              <span class="logo__accent">PC</span>
+            </span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="Основная навигация">
+          <a
+            class="site-nav__link"
+            data-path="gotovye-pk"
+            href="ready-pcs.html"
+          >
+            Готовые ПК
+          </a>
+          <a
+            class="site-nav__link"
+            data-path="komplektuyushchie"
+            href="catalog.html"
+          >
+            Комплектующие
+          </a>
+          <a class="site-nav__link" data-path="periferiya" href="peripherals.html">
+            Периферия
+          </a>
+          <a class="site-nav__link" data-path="konfigurator" href="configurator.html">
+            Конфигуратор
+          </a>
+        </nav>
+        <div class="header-actions">
+          <a href="favorites.html" data-path="izbrannoe" aria-label="Избранное" class="header-action">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+          <a
+            class="header-action"
+            data-path="korzina"
+            href="cart.html"
+            aria-label="Корзина"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+          <a class="header-action--profile" data-path="profil" href="account.html" aria-label="Личный кабинет">
+            <span class="material-symbols-outlined">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="site-main"><div class="page-content"><div class="catalog builder-page">
+      <div class="catalog__glow" aria-hidden="true"></div><div class="catalog__glow-secondary" aria-hidden="true"></div>
+      <section class="catalog-heading"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a class="breadcrumbs__home" href="index.html"><span class="material-symbols-outlined icon-small" aria-hidden="true">home</span>Главная</a><span aria-hidden="true">/</span><span class="breadcrumbs__current" aria-current="page">Конфигуратор ПК</span></nav>
+        <div class="catalog-heading__row"><div class="catalog-heading__text"><div class="catalog-heading__title-row"><h1 class="catalog-heading__title">Подберём ПК под ваши задачи</h1><span class="catalog-heading__count">NEXUS BUILDER</span></div><p class="catalog-heading__description">Опишите, что будете делать на компьютере, укажите бюджет и получите готовую модель или пример сборки из комплектующих.</p></div></div>
+      </section>
+      <div class="builder-layout"><section class="builder-panel" aria-labelledby="builder-form-title"><div class="builder-panel__heading"><span class="material-symbols-outlined icon-accent" aria-hidden="true">tune</span><h2 id="builder-form-title">Параметры подбора</h2></div>
+        <form id="builder-form" class="builder-form">
+          <label class="builder-field" for="builder-purpose"><span class="builder-field__label">Для чего вам ПК?</span><span class="builder-field__hint">Например: игры в 1440p и стриминг, монтаж видео или работа с документами.</span><textarea id="builder-purpose" name="purpose" rows="4" minlength="4" maxlength="500" required placeholder="Расскажите о своих задачах"></textarea></label>
+          <div class="builder-examples" aria-label="Примеры задач"><button type="button" data-example="Игры и стриминг">Игры и стриминг</button><button type="button" data-example="Монтаж видео и 3D-рендер">Монтаж и 3D</button><button type="button" data-example="Работа, учёба и повседневные задачи">Работа и учёба</button></div>
+          <label class="builder-field" for="builder-budget"><span class="builder-field__label">Бюджет, ₸</span><span class="builder-field__hint">Максимальная сумма за системный блок без периферии.</span><input id="builder-budget" name="budget" type="number" min="100000" max="10000000" step="1000" inputmode="numeric" required placeholder="Например, 1 200 000" /></label>
+          <div class="builder-form__pair"><label class="builder-field" for="builder-resolution"><span class="builder-field__label">Разрешение экрана</span><select id="builder-resolution" name="resolution"><option value="1080">Full HD · 1080p</option><option value="1440" selected>QHD · 1440p</option><option value="2160">4K · 2160p</option></select></label><label class="builder-field" for="builder-priority"><span class="builder-field__label">Что важнее?</span><select id="builder-priority" name="priority"><option value="balanced" selected>Баланс цены и мощности</option><option value="performance">Максимум производительности</option><option value="quiet">Тихая работа</option></select></label></div>
+          <p class="builder-form__note">Цены приведены как пример по каталогу сайта. Подбор учитывает основные характеристики, но финальную совместимость и наличие нужно подтвердить перед покупкой.</p>
+          <div class="builder-form__actions"><button class="product-card__buy" type="submit"><span class="material-symbols-outlined icon-button" aria-hidden="true">auto_awesome</span>Подобрать ПК</button><button class="filters__reset" type="reset">Очистить</button></div>
+        </form>
+      </section>
+      <section class="builder-results" aria-labelledby="builder-results-title"><div class="builder-panel__heading"><span class="material-symbols-outlined icon-accent" aria-hidden="true">memory</span><h2 id="builder-results-title">Результат</h2></div><div id="builder-welcome" class="builder-welcome"><span class="material-symbols-outlined" aria-hidden="true">desktop_windows</span><h3>Ваш вариант появится здесь</h3><p>Заполните параметры и нажмите «Подобрать ПК».</p></div><div id="builder-result" hidden aria-live="polite"></div></section></div>
+    </div></div></main>
+    <footer class="home-footer">
+      <div class="container">
+        <div class="home-footer__top">
+          <div class="logo-wrap">
+            <a class="logo" data-path="glavnaya" href="index.html">
+              <img
+                alt="NEXUS PC Logo"
+                class="logo__image"
+                src="images/nexus.logo.png"
+              />
+              <span class="logo__text">
+                NEXUS
+                <span class="logo__accent">PC</span>
+              </span>
+            </a>
+          </div>
+          <nav class="footer-nav" aria-label="Навигация в подвале">
+            <a
+              class="footer-nav__link"
+              data-path="gotovye-pk"
+              href="ready-pcs.html"
+              >Готовые ПК</a
+            >
+            <a
+              class="footer-nav__link"
+              data-path="komplektuyushchie"
+              href="catalog.html"
+              >Комплектующие</a
+            >
+            <a class="footer-nav__link" data-path="periferiya" href="peripherals.html"
+              >Периферия</a
+            >
+            <a class="footer-nav__link" data-path="konfigurator" href="configurator.html"
+              >Конфигуратор</a
+            >
+          </nav>
+          <div class="home-footer__contacts">
+            <div class="home-footer__contact">
+              <a class="home-footer__phone" href="tel:+77273553590">
+                +7 (727) 355-35-90
+              </a>
+              <span class="footer-caption">Ежедневно с 10:00 до 21:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="home-footer__bottom">
+          <p>© 2025–2026 NEXUS PC. Все права защищены.</p>
+          <div class="home-footer__legal">
+            <a class="home-footer__legal-link" href="privacy.html">
+              Политика конфиденциальности
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
